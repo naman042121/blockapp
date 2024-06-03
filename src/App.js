@@ -1,25 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
-
+import FormComponent from './components/home'
+import ListPage  from './components/listpage'
+import ViewPage from './components/viewpage'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <h1>My block app todo</h1>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/list">Stored Data</Link>
+          </nav>
+        </header>
+        <main>
+          <Routes>
+            <Route path="/" element={<FormComponent />} />
+            <Route path="/list" element={<ListPage />} />
+            <Route path="/view/:id" element={<ViewPage />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
+    );
 }
 
 export default App;
